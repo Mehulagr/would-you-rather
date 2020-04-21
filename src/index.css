@@ -11,3 +11,58 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav {
+  margin-top: 2px;
+}
+
+.btn-outline-primary{
+  width: 100%;
+}
+
+.card-content {
+  width: calc(100% - 116px)
+}
+
+.card-content-2 {
+  width: calc(100% - 207px)
+}
+
+.avatar-image{
+  width: 100px;
+  height: 100px
+}
+
+.card {
+  max-width: 600px;
+  margin: auto
+}
+
+.circle
+  {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px; 
+    background: #00bcd4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .circle p {
+    margin: 0px;
+  }
+
+  .question-radio input {
+    margin-right: 8px;
+  }
+
+  .question-radio label {
+    width: calc(100% - 22px);
+  }
