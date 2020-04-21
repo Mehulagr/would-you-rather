@@ -14,7 +14,6 @@ export default function questions (state={}, action) {
                 [action.question.id]: action.question
             }
         case ADD_ANSWER_TO_QUESTION:
-            console.log(state)
             return {
                 ...state,
                 [action.newAnswer.qid]: {

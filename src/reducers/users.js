@@ -8,7 +8,6 @@ export default function questions (state={}, action) {
                 ...action.users
             }
         case ADD_ANSWER_TO_USER:
-            console.log(state)
             return {
                 ...state,
                 [action.newAnswer.authedUser]: {

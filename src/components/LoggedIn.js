@@ -15,26 +15,22 @@ class LoggedIn extends Component {
       
         return (
             <div>
-                
-                {
-                    this.props.authedUser.id 
+                {   this.props.authedUser.id 
                     ?   <Route path='/' exact component={Login}/> 
                     :   <Fragment>
                             <GameNav authedUser={authedUser}/>
                             <div className="container">
-                            <Switch>
-                                <Route path='/dashboard' exact component={QuestionsListPage} />
-                                <Route path='/question/:id' component={AnswerQuestion} />
-                                <Route path='/add' component={NewQuestion} />
-                                <Route path='/leaderboard' component={Leaderboard} />
-                                <Route exact path='/' component={Login} />
-                                <Route component={NotFound} />
+                                <Switch>
+                                    <Route path='/dashboard' exact component={QuestionsListPage} />
+                                    <Route path='/question/:id' component={AnswerQuestion} />
+                                    <Route path='/add' component={NewQuestion} />
+                                    <Route path='/leaderboard' component={Leaderboard} />
+                                    <Route exact path='/' component={Login} />
+                                    <Route component={NotFound} />
                                 </Switch>
                             </div>
                         </Fragment>
                 }
-                
-                
             </div>
         )
     }

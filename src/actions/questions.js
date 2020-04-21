@@ -22,7 +22,6 @@ export function addQuestion (question) {
 export function handleAddQuestion (optionOne, optionTwo) {
     return (dispatch, getState) => {
         const { authedUser } = getState()
-        console.log("This is the authed used ", authedUser)
         const newQuestion = {
             author: authedUser.id,
             optionOneText: optionOne, 
