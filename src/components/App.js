@@ -19,7 +19,7 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div>
-            { this.props.loading === true
+            { this.props.loading
               ? null
               : <LoggedIn authedUser={authedUser} />
             }

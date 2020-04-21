@@ -7,6 +7,7 @@ import NewQuestion from './NewQuestion';
 import Login from './Login';
 import GameNav from './Nav';
 import { Switch, Route } from 'react-router-dom';
+import NotFound from './NotFound';
 
 class LoggedIn extends Component {
     render() {
@@ -14,21 +15,26 @@ class LoggedIn extends Component {
       
         return (
             <div>
-                <Switch>
+                
                 {
-                    this.props.authedUser.id ? <Route path='/' exact component={Login}/> :
-                    <Fragment>
-                        <GameNav authedUser={authedUser}/>
-                        <div className="container">
-                            <Route path='/dashboard' exact component={QuestionsListPage} />
-                            <Route path='/question/:id' component={AnswerQuestion} />
-                            <Route path='/add' component={NewQuestion} />
-                            <Route path='/leaderboard' component={Leaderboard} />
-                            <Route exact path='/' component={Login} />
-                        </div>
-                    </Fragment>
+                    this.props.authedUser.id 
+                    ?   <Route path='/' exact component={Login}/> 
+                    :   <Fragment>
+                            <GameNav authedUser={authedUser}/>
+                            <div className="container">
+                            <Switch>
+                                <Route path='/dashboard' exact component={QuestionsListPage} />
+                                <Route path='/question/:id' component={AnswerQuestion} />
+                                <Route path='/add' component={NewQuestion} />
+                                <Route path='/leaderboard' component={Leaderboard} />
+                                <Route exact path='/' component={Login} />
+                                <Route component={NotFound} />
+                                </Switch>
+                            </div>
+                        </Fragment>
                 }
-                </Switch>
+                
+                
             </div>
         )
     }
