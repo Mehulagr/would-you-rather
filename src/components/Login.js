@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import { Link, withRouter, Redirect } from "react-router-dom";
+import logo from '../image/would-you-rather-logo.png';
 
 class Login extends Component {
     state = {
@@ -17,6 +19,7 @@ class Login extends Component {
         e.preventDefault()
         const { dispatch } = this.props
         dispatch(setAuthedUser(this.state.usersSelectionValue))
+        this.props.history.push(`/`)
     }
 
     render() {
@@ -24,16 +27,25 @@ class Login extends Component {
         const { usersSelectionValue } = this.state
 
         return (
-            <div className="center">
-                Login
+            <div className="center card">
                 <form onSubmit={this.handleSubmit}>
-                <select id="userSelection" value={usersSelectionValue} onChange={this.handleChange}>
-                    { Object.keys(users).map((userKey) => {
-                        return <option value={userKey} key={userKey}>{users[userKey].name}</option>
-                    })
-                    }
-                </select> <br />
-                <button type='submit'>Log In</button>
+                    <div className="card-header w-100">
+                        <h4>Welcome to would you rather</h4>
+                        <p className="m-0">Login to continue</p>
+                    </div>
+                    <img className="card-img-top" src={logo} alt="Would you rather game logo" />
+                    <div className="card-block w-100 p-4 card-content">
+                        <div className="input-group">
+                            <select className="custom-select" id="userSelection" value={usersSelectionValue} onChange={this.handleChange}>
+                                { Object.keys(users).map((userKey) => {
+                                    return <option value={userKey} key={userKey}>{users[userKey].name}</option>
+                                })
+                                }
+                            </select>
+                        </div>
+                        <Link onClick={this.handleSubmit} className="btn btn-outline-primary my-2" to={`/`}>Login</Link>
+                    </div>
+                {/* <button type='submit'>Log In</button> */}
                 </form>
             </div>
         )
@@ -47,4 +59,4 @@ function mapStateToProps({users}, {id}) {
     }
 }
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))
