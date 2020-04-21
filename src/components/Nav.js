@@ -10,7 +10,7 @@ import {
     NavLink,
   } from 'reactstrap';
 
-export default function GameNav () {
+export default function GameNav (props) {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
@@ -22,12 +22,12 @@ export default function GameNav () {
         <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
                 <NavItem>
-                    <NavLink tag={RouterLink} to='/' exact activeClassName='active'>
+                    <NavLink tag={RouterLink} to='/dashboard' exact activeClassName='active'>
                         Home
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={RouterLink} to='/new' activeClassName='active'>
+                    <NavLink tag={RouterLink} to='/add' activeClassName='active'>
                         New Question
                     </NavLink>
                 </NavItem>
@@ -39,7 +39,7 @@ export default function GameNav () {
             </Nav>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink tag={RouterLink} to='/login' activeClassName='active'>
+                    <NavLink tag={RouterLink} to='/' activeClassName='active'>
                         Logout
                     </NavLink>
                 </NavItem>

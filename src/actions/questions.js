@@ -22,9 +22,9 @@ export function addQuestion (question) {
 export function handleAddQuestion (optionOne, optionTwo) {
     return (dispatch, getState) => {
         const { authedUser } = getState()
-        //const authedUser = 'johndoe'
+        console.log("This is the authed used ", authedUser)
         const newQuestion = {
-            author: authedUser,
+            author: authedUser.id,
             optionOneText: optionOne, 
             optionTwoText: optionTwo
         }
@@ -42,10 +42,10 @@ export function addQuestionAnswer (newAnswer) {
 
 export function handleAnswer (questionId, selectedOption) {
     return (dispatch, getState) => {
-        //const { authedUser } = getState()
-        const authedUser = 'tylermcginnis'
+        const { authedUser } = getState()
+        //const authedUser = 'tylermcginnis'
         const newAnswer = {
-            authedUser: authedUser,
+            authedUser: authedUser.id,
             qid: questionId, 
             answer: selectedOption
         }

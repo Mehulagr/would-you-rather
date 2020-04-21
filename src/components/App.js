@@ -6,7 +6,6 @@ import LoadingBar from 'react-redux-loading'
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import LoggedIn from './LoggedIn';
-import Login from './Login';
 
 class App extends Component {
   componentDidMount() {
@@ -15,20 +14,19 @@ class App extends Component {
   render() {
     const {authedUser} = this.props;
 
-  
-      return (
-        <Router>
-          <Fragment>
-            <LoadingBar />
-            <div>
-              { this.props.loading === true
-                ? null
-                : <LoggedIn authedUser={authedUser} />
-              }
-            </div>
-          </Fragment>
-        </Router>
-      )
+    return (
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          <div>
+            { this.props.loading === true
+              ? null
+              : <LoggedIn authedUser={authedUser} />
+            }
+          </div>
+        </Fragment>
+      </Router>
+    )
   }
 }
 

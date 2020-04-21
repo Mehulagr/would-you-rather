@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setAuthedUser } from '../actions/authedUser'
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { setAuthedUser, logoutUser } from '../actions/authedUser'
+import { Link, withRouter } from "react-router-dom";
 import logo from '../image/would-you-rather-logo.png';
 
 class Login extends Component {
+    componentDidMount(){
+        this.props.dispatch(logoutUser())
+      }
+
     state = {
         usersSelectionValue: 'sarahedo'
     }
@@ -19,7 +23,7 @@ class Login extends Component {
         e.preventDefault()
         const { dispatch } = this.props
         dispatch(setAuthedUser(this.state.usersSelectionValue))
-        this.props.history.push(`/`)
+        this.props.history.push(`/dashboard`)
     }
 
     render() {

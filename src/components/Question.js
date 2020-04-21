@@ -8,20 +8,6 @@ class Question extends Component {
 
         return (
             <div>
-                {/* {question && 
-                    <div className='question-card'>
-                        <h5 className='question-card-header'>{user.name} asks...</h5>
-                        <div className='question-card-content'>
-                            <img src={user.avatarURL} alt={user.name}/>
-                            <div className='question-card-text'>
-                                <p>Would you rather</p>
-                                <p>...{question.optionOne.text}...</p>
-                                <Link to={`/question/${question.id}`} className='tweet'>Vote</Link>
-                            </div>
-                        </div>
-                    </div>
-                } */}
-
                 <div className="card flex-row flex-wrap">
                     <div className="card-header w-100">
                         {user.name} asks...
