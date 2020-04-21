@@ -78,8 +78,16 @@ class QuestionsListPage extends Component {
 function mapStateToProps({users, questions, authedUser}) {
   return {
     authedUser,
-    unAnsweredQuestionIds: authedUser.id ? Object.keys(questions).filter((a) => !Object.keys(users[authedUser.id].answers).includes(a)) : 'none',
-    answeredQuestionIds: authedUser.id ? Object.keys(questions).filter((a) => Object.keys(users[authedUser.id].answers).includes(a)) : 'none'
+    unAnsweredQuestionIds: authedUser.id 
+                              ? Object.keys(questions)
+                                .filter((a) => !Object.keys(users[authedUser.id].answers).includes(a)) 
+                                .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+                              : 'none',
+    answeredQuestionIds: authedUser.id 
+                          ? Object.keys(questions)
+                            .filter((a) => Object.keys(users[authedUser.id].answers).includes(a)) 
+                            .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+                          : 'none'
   }
 }
 

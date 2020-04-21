@@ -46,6 +46,7 @@ class AnswerQuestion extends Component {
                                             <p className="mb-1">Would you rather {question && question.optionOne.text}?</p>
                                             <div className="progress mb-4">
                                                 <div className="progress-bar bg-info" role="progressbar" style={{width: questionOnePercentage}} aria-valuenow={questionOnePercentage} aria-valuemin="0" aria-valuemax="100">{questionOnePercentage}</div>
+                                                
                                             </div>
                                             <p>Would you rather {question && question.optionTwo.text}?</p>
                                             <div className="progress mb-2">
@@ -102,8 +103,8 @@ function mapStateToProps({users, questions, authedUser}, props) {
         const authUser = authedUser.id
         const {id} = props.match.params
         const question = questions[id]
-        const user = question ? users[question.author] : 'none'
-        const didUserAnswerThisQuestion = users && question && authUser ? Object.keys(users[authUser].answers).includes(question.id) : 'none'
+        const user = users[question.author]
+        const didUserAnswerThisQuestion = Object.keys(users[authUser].answers).includes(question.id)
 
         return {
             user,

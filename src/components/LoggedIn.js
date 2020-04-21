@@ -21,10 +21,10 @@ class LoggedIn extends Component {
                             <GameNav authedUser={authedUser}/>
                             <div className="container">
                                 <Switch>
-                                    <Route path='/dashboard' exact component={QuestionsListPage} />
-                                    <Route path='/question/:id' component={AnswerQuestion} />
-                                    <Route path='/add' component={NewQuestion} />
-                                    <Route path='/leaderboard' component={Leaderboard} />
+                                    <PrivateRoute path='/dashboard' exact component={QuestionsListPage} />
+                                    <PrivateRoute path='/question/:id' component={AnswerQuestion} />
+                                    <PrivateRoute path='/add' component={NewQuestion} />
+                                    <PrivateRoute path='/leaderboard' component={Leaderboard} />
                                     <Route exact path='/' component={Login} />
                                     <Route component={NotFound} />
                                 </Switch>
@@ -35,5 +35,11 @@ class LoggedIn extends Component {
         )
     }
   }
+
+  function mapStateToProps({authedUser}) {
+    return {
+      authedUser,
+    }
+  }
   
-  export default connect()(LoggedIn);
+  export default connect(mapStateToProps)(LoggedIn);
