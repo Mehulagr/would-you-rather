@@ -39,9 +39,14 @@ export default function GameNav (props) {
             </Nav>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink tag={RouterLink} to='/' activeClassName='active'>
-                        Logout
-                    </NavLink>
+                    {props.authUser
+                        ?   <NavLink tag={RouterLink} to='/' activeClassName='active'>
+                                Logout {props.authUser.name.split(' ')[0]}
+                            </NavLink>
+                        :   <NavLink tag={RouterLink} to='/' activeClassName='active'>
+                                Login
+                            </NavLink>
+                    }
                 </NavItem>
             </Nav>
         </Collapse>

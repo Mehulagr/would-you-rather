@@ -11,7 +11,7 @@ import NotFound from './NotFound';
 
 class LoggedIn extends Component {
     render() {
-        const {authedUser} = this.props;
+        const {authedUser, users} = this.props;
 
         const PrivateRoute = ({ component: Component, ...rest }) => (
             <Route {...rest} render={(props) => (
@@ -26,7 +26,7 @@ class LoggedIn extends Component {
       
         return (
             <Router>
-                <GameNav authedUser={authedUser}/>
+                <GameNav authUser={authedUser.id ? users[authedUser.id] : false} user/>
                 <div className="container">
                     <Switch>
                     <PrivateRoute path='/dashboard' exact component={QuestionsListPage} />
@@ -42,9 +42,10 @@ class LoggedIn extends Component {
     }
   }
 
-  function mapStateToProps({authedUser}) {
+  function mapStateToProps({authedUser, users}) {
     return {
       authedUser,
+      users
     }
   }
   
