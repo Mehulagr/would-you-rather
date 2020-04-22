@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser, logoutUser } from '../actions/authedUser'
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import logo from '../image/would-you-rather-logo.png';
 
 class Login extends Component {
@@ -23,7 +23,9 @@ class Login extends Component {
         e.preventDefault()
         const { dispatch } = this.props
         dispatch(setAuthedUser(this.state.usersSelectionValue))
-        this.props.history.push(`/dashboard`)
+        this.props.history.location.state
+            ? this.props.history.push(this.props.history.location.state.from.pathname)
+            : this.props.history.push('/dashboard')
     }
 
     render() {
@@ -47,7 +49,7 @@ class Login extends Component {
                                 }
                             </select>
                         </div>
-                        <Link onClick={this.handleSubmit} className="btn btn-outline-primary my-2" to={`/`}>Login</Link>
+                        <button onClick={this.handleSubmit} className="btn btn-outline-primary my-2">Login</button>
                     </div>
                 {/* <button type='submit'>Log In</button> */}
                 </form>
@@ -56,9 +58,10 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps({users}, {id}) {
+function mapStateToProps({users, authedUser}, {id}) {
     return {
         users,
+        authedUser
         //usersSelectionValue: users ? Object.keys(users)[0] : 'none'
     }
 }

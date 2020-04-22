@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswer } from '../actions/questions'
+import { Route } from 'react-router-dom'
+import NotFound from './NotFound'
 
 class AnswerQuestion extends Component {
     state = {
@@ -22,8 +24,13 @@ class AnswerQuestion extends Component {
     }
 
     render() {
-        const { user, question, didUserAnswerThisQuestion, authUser } = this.props
+        const { user, question, didUserAnswerThisQuestion, authUser, error } = this.props
         const { selectedOption } = this.state
+
+        if (error) {
+            return <Route component={NotFound} />
+        }
+
         const totalAnswers = question ? question.optionOne.votes.length + question.optionTwo.votes.length : 'none'
         const questionOnePercentage = question ? (question.optionOne.votes.length / totalAnswers * 100).toFixed(0) + '%' : 'none'
         const questionTwoPercentage = question ? (question.optionTwo.votes.length / totalAnswers * 100).toFixed(0) + '%' : 'none'
@@ -103,9 +110,10 @@ class AnswerQuestion extends Component {
 
 function mapStateToProps({users, questions, authedUser}, props) {
     if (Object.keys(users).length !== 0 && Object.keys(questions).length !== 0 && authedUser.id) {
+        let error = false
         const authUser = authedUser.id
         const {id} = props.match.params
-        const question = questions[id]
+        const question = questions[id] ? questions[id] : error = true
         const user = users[question.author]
         const didUserAnswerThisQuestion = Object.keys(users[authUser].answers).includes(question.id)
 
@@ -114,7 +122,8 @@ function mapStateToProps({users, questions, authedUser}, props) {
             question,
             didUserAnswerThisQuestion,
             authUser,
-            users
+            users,
+            error
         }
     }
 }
